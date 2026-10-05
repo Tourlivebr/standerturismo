@@ -77,16 +77,14 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
  const hero = document.querySelector<HTMLElement>('.home-hero');
  const slides = Array.from(document.querySelectorAll<HTMLImageElement>('.hero-background .hero-landscape'));
  const pauseButton = document.querySelector<HTMLButtonElement>('.hero-carousel-toggle');
- const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
  let currentSlide = 0;
  let pausedByUser = false;
  let heroVisible = true;
- let heroFocused = false;
  let timer: ReturnType<typeof setTimeout> | undefined;
  let stopped = false;
  const scheduleSlide = () => {
   clearTimeout(timer);
-  if (stopped || slides.length < 2 || pausedByUser || reducedMotion.matches || document.hidden || !heroVisible || heroFocused) return;
+  if (stopped || slides.length < 2 || pausedByUser || document.hidden || !heroVisible) return;
   timer = setTimeout(() => {
    let next = (currentSlide + 1) % slides.length;
    while (next !== currentSlide && (!slides[next].complete || slides[next].naturalWidth === 0)) next = (next + 1) % slides.length;
@@ -104,16 +102,15 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
   pauseButton.setAttribute('aria-label', pausedByUser ? 'Retomar carrossel de imagens' : 'Pausar carrossel de imagens');
   scheduleSlide();
  });
- hero?.addEventListener('focusin', () => { heroFocused = true; scheduleSlide(); });
- hero?.addEventListener('focusout', event => { heroFocused = event.relatedTarget instanceof Node && hero.contains(event.relatedTarget); scheduleSlide(); });
  document.addEventListener('visibilitychange', scheduleSlide);
- reducedMotion.addEventListener('change', scheduleSlide);
  if (hero && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; scheduleSlide(); });
   observer.observe(hero);
-  window.addEventListener('pagehide', () => observer.disconnect(), { once: true });
+  window.addEventListener('pagehide', () => observer.disconnect());
+  window.addEventListener('pageshow', () => observer.observe(hero));
  }
- window.addEventListener('pagehide', () => { stopped = true; clearTimeout(timer); }, { once: true });
+ window.addEventListener('pagehide', () => { stopped = true; clearTimeout(timer); });
+ window.addEventListener('pageshow', () => { stopped = false; scheduleSlide(); });
  scheduleSlide();
 
  const toggle = document.querySelector<HTMLButtonElement>('.mobile-menu-toggle');

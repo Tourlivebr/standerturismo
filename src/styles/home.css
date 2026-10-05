@@ -37,7 +37,7 @@
 .hero-carousel-toggle .play-icon{display:none}
 .hero-carousel-toggle[aria-pressed="true"] .pause-icon{display:none}
 .hero-carousel-toggle[aria-pressed="true"] .play-icon{display:block}
-@media(prefers-reduced-motion:reduce){.hero-carousel-toggle{display:none}}
+
 .home-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#031a0edb 0%,#051c107a 56%,#051c101f),linear-gradient(0deg,#031b0fcc,transparent 55%)}
 .hero-content{padding-block:65px;color:white}
 .eyebrow{text-transform:uppercase;letter-spacing:1.7px;font-size:13px;font-weight:600;color:#ebc66d}
@@ -233,3 +233,5 @@ body:has(.stander-home) .whatsapp-button{width:46px;height:46px;right:14px;botto
 html:has(.stander-home){scroll-behavior:auto}
 }
 
+
+@media(prefers-reduced-motion:reduce){.stander-home .hero-landscape{transition:opacity .25s ease-in-out!important}}
