@@ -38,7 +38,7 @@
 .hero-carousel-toggle[aria-pressed="true"] .pause-icon{display:none}
 .hero-carousel-toggle[aria-pressed="true"] .play-icon{display:block}
 
-.home-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#031a0edb 0%,#051c107a 56%,#051c101f),linear-gradient(0deg,#031b0fcc,transparent 55%)}
+.home-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#031a0e99 0%,#051c1038 56%,#051c1008),linear-gradient(0deg,#031b0f40,transparent 45%)}
 .hero-content{padding-block:65px;color:white}
 .eyebrow{text-transform:uppercase;letter-spacing:1.7px;font-size:13px;font-weight:600;color:#ebc66d}
 .stander-home h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(46px,5.5vw,76px);line-height:1.02;font-weight:500;letter-spacing:-2px;margin:15px 0 20px}
@@ -179,7 +179,7 @@ body:has(.stander-home) .whatsapp-button{background:#123e2a;color:white;animatio
 #home-navigation{left:-16px;right:-16px}
 .home-hero{min-height:570px;align-items:flex-end}
 .hero-landscape{object-position:57% center}
-.home-hero:after{background:linear-gradient(0deg,#042316 0%,#052a1c9c 60%,#051b1620)}
+.home-hero:after{background:linear-gradient(0deg,#04231680 0%,#052a1c40 60%,transparent)}
 .hero-content{padding-top:160px;padding-bottom:27px}
 .eyebrow{font-size:10px;letter-spacing:1.15px}
 .stander-home h1{font-size:43px;letter-spacing:-1.3px;margin:12px 0 14px}
@@ -235,3 +235,5 @@ html:has(.stander-home){scroll-behavior:auto}
 
 
 @media(prefers-reduced-motion:reduce){.stander-home .hero-landscape{transition:opacity .25s ease-in-out!important}}
+
+.home-hero h1,.home-hero .eyebrow,.home-hero .hero-description,.home-hero .search-help{text-shadow:0 2px 6px #000a}
