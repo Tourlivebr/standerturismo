@@ -220,3 +220,6 @@ html:has(.stander-home){scroll-behavior:auto}
 @media(max-width:540px){.hero-links-wrap + .home-section{padding-top:55px}}
 
 .tickets-section{background:#f0f4f1;margin-top:28px;padding-bottom:40px}
+
+.tours-more{text-align:center;margin-top:24px}.tours-more .green-button{min-width:155px;font-weight:600}
+@media(max-width:540px){.tours-preview{display:grid;grid-template-columns:1fr;overflow:visible;scroll-snap-type:none;padding:0;gap:18px}.tours-preview .product-card{width:100%}.tours-preview .product-image{height:220px}}

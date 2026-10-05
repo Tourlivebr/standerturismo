@@ -188,64 +188,9 @@ const passeios = [
   <Header />
   
   <main class="pt-20 lg:pt-24">
-<!-- Hero Section -->
-<section 
-  class="relative text-white py-8 lg:py-20 bg-center bg-cover bg-no-repeat bg-scroll lg:bg-local"
-  style="background-image: url('/images/link_passeios1.jpg'); filter: brightness(1.05) contrast(1.1) saturate(1.2);"
->
-  <!-- Overlay branco bem leve só pra não perder legibilidade -->
-  <div class="absolute inset-0 bg-white/10"></div>
-
-  <div class="relative container mx-auto px-4 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">Translados e Passeios</h1>
-      <p class="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
-        Experiências autênticas e inesquecíveis na região colonial
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <div class="flex items-center text-white/90">
-          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-          </svg>
-          Guia especializado
-        </div>
-        <div class="flex items-center text-white/90">
-          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-          </svg>
-          Transporte incluso
-        </div>
-        <div class="flex items-center text-white/90">
-          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-          </svg>
-          Experiência personalizada
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Divisor Boleado Suave -->
-  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20">
-    <svg 
-      viewBox="0 0 1200 120" 
-      preserveAspectRatio="none" 
-      class="relative block w-[calc(100%+1.3px)] h-[30px] lg:h-[50px]"
-    >
-      <path d="M0,0 C300,120 900,120 1200,0 L1200,120 L0,120 Z" class="fill-dark-50 dark:fill-dark-900"></path>
-    </svg>
-  </div>
-</section>
-
-
-    <!-- Filtros -->
-    <section class="py-6 bg-gradient-to-r from-dark-50 to-dark-100 dark:from-dark-900 dark:to-dark-800">
-      <div class="container mx-auto px-4">
-      </div>
-    </section>
-
+    <div class="container mx-auto px-4 pt-10"><h1 class="text-3xl font-bold">Todos os passeios</h1></div>
     <!-- Grid de Passeios (estrutura IDENTICA aos cards da home) -->
-    <section class="py-20 bg-gradient-to-b from-white to-dark-50 dark:from-dark-900 dark:to-dark-800">
+    <section class="py-10 bg-gradient-to-b from-white to-dark-50 dark:from-dark-900 dark:to-dark-800">
       <div class="container mx-auto px-4">
         <div id="passeios-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {passeios.map((passeio) => (
