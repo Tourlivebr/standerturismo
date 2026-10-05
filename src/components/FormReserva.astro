@@ -60,7 +60,7 @@ const precoCheioCalculado = precoCheioPorPessoa !== undefined
   ? precoCheioPorPessoa
   : (passeioPreco2 ?? precoPessoaCalculado);
 
-const formatarReal = (v: number) => `R$ ${v.toFixed(2).replace('.', ',')}`;
+const formatarReal = (_v: number) => 'Sob consulta';
 
 const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCompletas) : '';
 ---
@@ -79,6 +79,7 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
   data-preco-pessoa={precoPessoaCalculado}
   data-preco-cheio-pessoa={precoCheioCalculado}
 >
+  <p class="mb-4 text-sm font-medium text-primary-700">Consulte os valores pelo WhatsApp.</p>
   {(passeioDuracao || passeioHorarios || passeioCategoria) && (
 
     <h2 class="text-2xl font-bold mb-4">Faça sua Reserva:</h2>
@@ -123,10 +124,7 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
           <span class="text-dark-600 text-sm font-medium">Quantidade:</span>
           <span class="font-bold text-dark-900 text-sm tr-transfer-qtd">1 passageiro</span>
         </div>
-        <div class="flex items-center justify-between pt-2 border-t border-primary-100">
-          <span class="text-dark-700 text-base font-semibold">Valor total:</span>
-          <span class="text-2xl font-bold text-primary-600 tr-transfer-valor">R$ 350,00</span>
-        </div>
+
         <p class="text-xs text-danger-600 hidden tr-transfer-msg-erro">Este transfer permite reservas de 1 a 6 passageiros.</p>
       </div>
 
@@ -260,15 +258,7 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
     <div class="mb-5">
       {temContadorPessoas ? (
         <div class="space-y-3">
-          <div class="text-center space-y-1">
-            <div class="text-dark-600 text-sm">Por pessoa</div>
-            <div class="text-xl font-bold text-dark-400 line-through form-reserva-cheio">
-              {formatarReal(precoCheioCalculado)}
-            </div>
-            <div class="text-3xl font-bold text-primary-600 form-reserva-unitario">
-              {formatarReal(precoPessoaCalculado)}
-            </div>
-          </div>
+
 
           <div class="flex items-center justify-center gap-4 py-3">
             <button
@@ -289,19 +279,7 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
             >+</button>
           </div>
 
-          <div class="border-2 border-primary-100 bg-gradient-to-br from-primary-50/80 to-white rounded-xl p-4 shadow-sm space-y-2">
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-dark-600 font-medium">
-                <span class="form-reserva-qtd-label">1 pessoa</span> × {formatarReal(precoPessoaCalculado)}
-              </span>
-            </div>
-            <div class="flex items-center justify-between pt-2 border-t border-primary-100">
-              <span class="text-dark-900 text-base font-semibold">Valor total:</span>
-              <span class="text-2xl font-bold text-primary-600 form-reserva-total">
-                {formatarReal(precoPessoaCalculado)}
-              </span>
-            </div>
-          </div>
+
         </div>
       ) : (
         <>
@@ -314,7 +292,6 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
                 class={`faixa-completa-btn sidebar-faixa-btn border-2 rounded-xl p-3 text-center shadow-sm transition-all hover:shadow-md ${idx === 0 ? 'border-primary-500 ring-2 ring-primary-500 bg-white' : 'border-dark-200 bg-white'}`}
               >
                 <div class="text-dark-600 text-xs font-medium mb-1">{fx.label}</div>
-                <div class="text-xl font-bold text-primary-600">{formatarReal(fx.preco)}</div>
               </button>
             ))}
           </div>
@@ -322,23 +299,14 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
           <div class="grid grid-cols-2 gap-2 mb-4">
             <button type="button" data-faixa="1" class="faixa-pessoas-btn sidebar-faixa-btn border-2 border-primary-500 bg-white rounded-xl p-3 text-center shadow-sm transition-all hover:shadow-md ring-2 ring-primary-500">
               <div class="text-dark-600 text-xs font-medium mb-1">{passeioLabel1}</div>
-              <div class="text-xl font-bold text-primary-600">{formatarReal(passeioPreco1)}</div>
             </button>
             <button type="button" data-faixa="2" class="faixa-pessoas-btn sidebar-faixa-btn border-2 border-dark-200 bg-white rounded-xl p-3 text-center shadow-sm transition-all hover:shadow-md">
               <div class="text-dark-600 text-xs font-medium mb-1">{passeioLabel2}</div>
-              <div class="text-xl font-bold text-primary-600">{formatarReal(passeioPreco2)}</div>
             </button>
           </div>
         ) : null}
 
-        <div class="text-center">
-          <div class="text-dark-600 text-sm mb-1 form-reserva-label">
-            {temFaixasCompletas || passeioTemFaixas ? labelInicial : passeioParcelas}
-          </div>
-          <div class="text-3xl font-bold text-primary-600 form-reserva-valor">
-            {formatarReal(temFaixasCompletas || passeioTemFaixas ? precoInicial : (passeioPreco ?? 0))}
-          </div>
-        </div>
+
         </>
       )}
     </div>
@@ -411,7 +379,7 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
     data-whatsapp-direct="true"
     target="_blank"
     rel="noopener noreferrer"
-    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Olá! Gostaria de mais informações sobre o ${passeioNome}.${(temFaixasCompletas || passeioTemFaixas) ? ` ${labelInicial}: ${formatarReal(precoInicial)}.` : (passeioPreco !== undefined ? ` Valor: ${formatarReal(passeioPreco)}${passeioParcelas ? ` (${passeioParcelas})` : ''}.` : '')}`)}`}
+    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Olá! Gostaria de consultar os valores e a disponibilidade para ${passeioNome}.`)}`}
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
@@ -426,7 +394,7 @@ const faixasCompletasJSON = temFaixasCompletas ? JSON.stringify(passeioFaixasCom
 
 <script>
   const WHATSAPP = "5547984887630";
-  const fmt = (v) => `R$ ${(Number(v) || 0).toFixed(2).replace('.', ',')}`;
+  const fmt = (_v: number) => 'Sob consulta';
 
   // TABELA OFICIAL DE PREÇOS (única fonte de verdade)
   const TABELA_TRANSFER = {

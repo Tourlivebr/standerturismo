@@ -76,7 +76,7 @@ const passeio = {
   }
 };
 
-const whatsappMessage = `Olá! Gostaria de mais informações sobre o ${passeio.titulo}. Valor: R$ ${passeio.preco.toFixed(2).replace('.', ',')} em ${passeio.parcelas}.`;
+const whatsappMessage = `Olá! Gostaria de mais informações sobre o ${passeio.titulo}. Gostaria de consultar os valores e a disponibilidade.`;
 const whatsappUrl = `https://wa.me/5547984887630?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
@@ -87,7 +87,7 @@ const whatsappUrl = `https://wa.me/5547984887630?text=${encodeURIComponent(whats
   image={passeio.galeria[0]}
 >
   <Header />
-  
+
   <main class="pt-20 lg:pt-24">
     <!-- Hero Section -->
     <section class="relative h-48 lg:h-[350px] overflow-hidden" style={`background-image: url('${passeio.galeria[0]}'); background-attachment: fixed; background-size: cover; background-position: center; background-repeat: no-repeat;`}>
