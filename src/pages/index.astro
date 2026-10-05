@@ -42,23 +42,23 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
    <button class="mobile-menu-toggle icon-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="home-navigation"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
    <a class="home-logo" href="/" aria-label="Stander Turismo — início"><img src="/images/logo_sander_p.jpeg" alt="Stander Turismo" width="110" height="110" fetchpriority="high"/></a>
    <nav id="home-navigation" aria-label="Navegação principal"><a href="#inicio" class="active" aria-current="page">Início</a><a href="#passeios">Passeios</a><a href="#ingressos">Ingressos</a><a href="#destinos">Destinos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
-   <div class="header-actions"><a class="header-search icon-button" href="#busca" aria-label="Buscar passeios"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></a><a class="green-button header-whatsapp" href={wa} target="_blank" rel="noopener noreferrer" aria-label="Fale no WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Fale no WhatsApp</span></a></div>
+   <div class="header-actions"><a class="header-search icon-button" href="/passeios" aria-label="Ver passeios"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></a><a class="green-button header-whatsapp" href={wa} target="_blank" rel="noopener noreferrer" aria-label="Fale no WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Fale no WhatsApp</span></a></div>
   </div></header>
   <main>
    <section id="inicio" class="home-hero" aria-labelledby="hero-title"><div class="hero-background" aria-hidden="true">{heroImages.map((src, index) => <img class:list={['hero-landscape', { 'is-active': index === 0 }]} src={src} alt="" fetchpriority={index === 0 ? 'high' : 'low'} decoding="async" />)}</div>
     <button class="hero-carousel-toggle" type="button" aria-label="Pausar carrossel de imagens" aria-pressed="false" hidden={heroImages.length < 2}><svg class="icon pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><svg class="icon play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button>
     <div class="home-container hero-content"><p class="eyebrow">Descubra experiências incríveis</p><h1 id="hero-title">Viva o melhor<br/>do seu destino</h1><p class="hero-description">Passeios, ingressos e experiências inesquecíveis<br class="desktop-break"/> com a Stander Turismo.</p>
-     <form id="busca" class="trip-search" aria-label="Planeje seu passeio">
-      <label class="search-field"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span class="sr-only">Qual é o seu destino?</span><select name="destino" id="trip-destination"><option value="">Qual é o seu destino?</option><option>Gramado</option><option>Canela</option><option>Serra Gaúcha</option><option>Outros destinos</option></select></label>
-      <label class="search-field date-field"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span class="date-placeholder">Data (opcional)</span><span class="sr-only">Data do passeio (opcional)</span><input type="date" name="data" id="trip-date"/></label>
-      <label class="search-field"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg><span class="sr-only">Quantas pessoas?</span><input type="number" name="pessoas" min="1" max="50" placeholder="Quantas pessoas?"/></label>
-      <button class="gold-button search-submit" type="submit" aria-label="Buscar passeios"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Buscar passeios</span></button>
-     </form><p class="search-help">Consulte passeios e disponibilidade pelo WhatsApp.</p>
     </div>
    </section>
+
+   <div class="hero-links-wrap home-container"><nav class="hero-links" aria-label="Explore a Stander Turismo">
+    <a href="/passeios"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg><span>Passeios</span></a>
+    <a href="/ingressos"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span>Ingressos</span></a>
+    <a href="#contato"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Contato</span></a>
+   </nav></div>
    <section id="destinos" class="home-section destinations-section" aria-labelledby="destinations-title"><div class="home-container">
     <div class="section-heading"><div><h2 id="destinations-title">Destinos em destaque</h2><p>Conheça os destinos mais procurados pelos nossos clientes.</p></div><a class="view-all" href="/passeios">Ver todos os destinos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-    <div class="destination-grid">{destinations.map(d => <a class="destination-card" href="#busca" data-destination={d.name}><img src={d.image} alt={d.name === 'Gramado' ? 'Arquitetura e jardins da Serra Gaúcha' : d.name} loading="lazy" width="400" height="440"/><div class="destination-caption"><h3>{d.name}</h3><span>Passeios e ingressos</span></div><span class="destination-arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>)}</div>
+    <div class="destination-grid">{destinations.map(d => <a class="destination-card" href="/passeios"><img src={d.image} alt={d.name === 'Gramado' ? 'Arquitetura e jardins da Serra Gaúcha' : d.name} loading="lazy" width="400" height="440"/><div class="destination-caption"><h3>{d.name}</h3><span>Passeios e ingressos</span></div><span class="destination-arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>)}</div>
    </div></section>
    <section id="passeios" class="home-section" aria-labelledby="tours-title"><div class="home-container">
     <div class="section-heading"><div><h2 id="tours-title">Passeios em destaque</h2><p>Experiências incríveis para tornar sua viagem inesquecível.</p></div><a class="view-all" href="/passeios">Ver todos os passeios <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
@@ -120,13 +120,4 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click',close));
  document.addEventListener('keydown',e => { if(e.key === 'Escape') close(); });
  document.addEventListener('click',e => { if(e.target instanceof Node && !nav?.contains(e.target) && !toggle?.contains(e.target)) close(); });
- const date = document.querySelector<HTMLInputElement>('#trip-date');
- if(date) { const now = new Date(); date.min = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`; date.addEventListener('change',() => date.closest('label')?.classList.toggle('has-date',Boolean(date.value))); }
- document.querySelector<HTMLFormElement>('#busca')?.addEventListener('submit',e => {
-  e.preventDefault(); const data = new FormData(e.currentTarget as HTMLFormElement);
-  const destination = String(data.get('destino') || 'Serra Gaúcha'); const day = String(data.get('data') || ''); const people = String(data.get('pessoas') || '');
-  const message = `Olá! Gostaria de conhecer os passeios em ${destination}.${day ? ` Data: ${day.split('-').reverse().join('/')}.` : ''}${people ? ` Para ${people} pessoa(s).` : ''}`;
-  window.open(`https://wa.me/5547984887630?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
- });
- document.querySelectorAll<HTMLAnchorElement>('[data-destination]').forEach(a => a.addEventListener('click',() => { const select = document.querySelector<HTMLSelectElement>('#trip-destination'); if(select) {select.value = a.dataset.destination || '';select.focus({preventScroll:true});} }));
 </script>

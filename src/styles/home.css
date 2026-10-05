@@ -43,21 +43,6 @@
 .eyebrow{text-transform:uppercase;letter-spacing:1.7px;font-size:13px;font-weight:600;color:#ebc66d}
 .stander-home h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(46px,5.5vw,76px);line-height:1.02;font-weight:500;letter-spacing:-2px;margin:15px 0 20px}
 .hero-description{font-size:19px;line-height:1.4;max-width:620px}
-.trip-search{margin-top:30px;width:min(850px,100%);display:grid;grid-template-columns:1.25fr 1fr 1fr auto;gap:0;background:#fbfaf7;border:7px solid #fbfaf7;border-radius:25px;color:#17251d;box-shadow:0 5px 24px #0002;scroll-margin-top:130px}
-.search-field{position:relative;display:flex;align-items:center;gap:11px;min-width:0;padding:9px 18px;min-height:48px}
-.search-field+.search-field{border-left:1px solid #e8e5de}
-.search-field .icon{width:19px}
-.search-field input,.search-field select{width:100%;min-width:0;border:0;background:transparent;font-size:14px;color:#555;padding:4px 0}
-.search-field select{appearance:none;cursor:pointer}
-.search-field input::placeholder{color:#555;opacity:1}
-.date-field input{color:transparent;position:absolute;inset:0;width:100%;padding-left:47px;cursor:pointer}
-.date-field input::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
-.date-placeholder{font-size:14px;color:#555;pointer-events:none}
-.date-field.has-date input,.date-field:focus-within input{color:#555}
-.date-field.has-date .date-placeholder,.date-field:focus-within .date-placeholder{visibility:hidden}
-.search-submit{width:48px;padding:0;border-radius:50%;box-shadow:0 2px 7px #a8783030}
-.search-submit span{display:none}
-.search-help{font-size:12px;color:#e6e8da;margin-top:12px!important}
 
 .home-section{padding-block:34px 20px}
 .destinations-section{background:#f7f7f5;padding-bottom:30px}
@@ -149,11 +134,6 @@ body:has(.stander-home) .whatsapp-button{background:#123e2a;color:white;animatio
 .home-hero{min-height:500px}
 .stander-home h1{font-size:58px}
 .hero-description{font-size:17px}
-.trip-search{grid-template-columns:1fr 1fr;border-radius:20px;gap:6px}
-.search-field+.search-field{border-left:0}
-.search-field{padding-inline:12px}
-.search-submit{width:100%;border-radius:14px}
-.search-submit span{display:inline}
 .destination-card{height:200px}
 .destination-caption{left:12px;bottom:15px}
 .destination-caption h3{font-size:21px}
@@ -185,12 +165,6 @@ body:has(.stander-home) .whatsapp-button{background:#123e2a;color:white;animatio
 .stander-home h1{font-size:43px;letter-spacing:-1.3px;margin:12px 0 14px}
 .hero-description{font-size:15px;max-width:330px}
 .desktop-break{display:none}
-.trip-search{grid-template-columns:1fr;border-radius:20px;margin-top:23px;border-width:7px;gap:7px;scroll-margin-top:105px}
-.search-field{min-height:43px;border-radius:15px;border:1px solid #e9e8e4;background:#fff;box-shadow:0 2px 4px #00000005;padding:7px 13px;gap:10px}
-.search-field+.search-field{border-left:1px solid #e9e8e4}
-.search-field input,.search-field select,.date-placeholder{font-size:13px}
-.search-submit{height:44px;min-height:44px;border-radius:15px;font-size:13px}
-.search-help{font-size:10px;text-align:center}
 .home-section{padding-top:27px;padding-bottom:14px}
 .section-heading{gap:10px;margin-bottom:16px;align-items:center}
 .stander-home h2{font-size:22px;letter-spacing:-.5px}
@@ -236,4 +210,12 @@ html:has(.stander-home){scroll-behavior:auto}
 
 @media(prefers-reduced-motion:reduce){.stander-home .hero-landscape{transition:opacity .25s ease-in-out!important}}
 
-.home-hero h1,.home-hero .eyebrow,.home-hero .hero-description,.home-hero .search-help{text-shadow:0 2px 6px #000a}
+.home-hero h1,.home-hero .eyebrow,.home-hero .hero-description{text-shadow:0 2px 6px #000a}
+
+.hero-links-wrap{position:relative;height:0;z-index:5}
+.hero-links{position:relative;transform:translateY(-50%);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(850px,100%);margin-inline:auto;padding:7px;background:#fbfaf7;border:1px solid #ece8df;border-radius:25px;box-shadow:0 6px 24px #08291c1c}
+.hero-links a{display:flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:10px 18px;border-radius:17px;color:var(--forest);font-size:16px;font-weight:500;transition:background .2s,color .2s}
+.hero-links a+a{border-left:1px solid #e8e5de}
+.hero-links a:hover{background:#efe5cd;color:#08291c}
+.destinations-section{padding-top:70px}
+@media(max-width:540px){.hero-content{padding-bottom:80px}.hero-links{border-radius:20px;padding:5px}.hero-links a{min-height:48px;padding:8px 5px;gap:6px;font-size:13px;border-radius:14px}.hero-links .icon{width:17px;height:17px}.destinations-section{padding-top:55px}}
