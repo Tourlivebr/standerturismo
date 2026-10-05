@@ -229,3 +229,16 @@ html:has(.stander-home){scroll-behavior:auto}
 @media(max-width:1100px){.experience-banner{padding-inline:32px}}
 @media(max-width:800px){.experience-banner{padding-inline:20px}}
 @media(max-width:540px){.experience-banner{padding-inline:16px;border-radius:0}}
+
+/* Passeios adicionais são abertos em lotes de quatro no celular. */
+.tours-preview .product-card[hidden],.tours-expand-controls [hidden]{display:none!important}
+.tours-preview .product-card:nth-child(n+5){display:none}
+.tours-expand-controls{display:none}
+.tours-more button{border:0;cursor:pointer;font:inherit}
+@media(max-width:540px){
+ .tours-preview .product-card:nth-child(n+5):not([hidden]){display:flex}
+ .tours-more.is-ready .tours-catalog-link{display:none}
+ .tours-expand-controls:not([hidden]){display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+ .tours-collapse{background:#edf3ef;color:#123e2a;border:1px solid #d7e3da!important}
+ .tours-collapse:hover{background:#dfeae3}
+}
