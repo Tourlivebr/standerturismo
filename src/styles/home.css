@@ -219,3 +219,6 @@ html:has(.stander-home){scroll-behavior:auto}
 .hero-links a:hover{background:#efe5cd;color:#08291c}
 .destinations-section{padding-top:70px}
 @media(max-width:540px){.hero-content{padding-bottom:80px}.hero-links{border-radius:20px;padding:5px}.hero-links a{min-height:48px;padding:8px 5px;gap:6px;font-size:13px;border-radius:14px}.hero-links .icon{width:17px;height:17px}.destinations-section{padding-top:55px}}
+
+.hero-links-wrap + .home-section{padding-top:70px}
+@media(max-width:540px){.hero-links-wrap + .home-section{padding-top:55px}}

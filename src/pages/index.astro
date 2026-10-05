@@ -7,6 +7,7 @@ const heroImages = readdirSync(new URL('../../public/images/hero/', import.meta.
  .sort((a, b) => a.localeCompare(b, 'pt-BR', { numeric: true }))
  .map(name => `/images/hero/${encodeURIComponent(name)}`);
 const wa = 'https://wa.me/5547984887630';
+const showDestinations = false;
 const destinations = [
  {name:'Gramado',image:'/images/Nova_Petropolis.jpg'},
  {name:'Canela',image:'/images/jolimont/catedral.png'},
@@ -41,7 +42,7 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
   <header class="home-header"><div class="home-container header-inner">
    <button class="mobile-menu-toggle icon-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="home-navigation"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
    <a class="home-logo" href="/" aria-label="Stander Turismo — início"><img src="/images/logo_sander_p.jpeg" alt="Stander Turismo" width="110" height="110" fetchpriority="high"/></a>
-   <nav id="home-navigation" aria-label="Navegação principal"><a href="#inicio" class="active" aria-current="page">Início</a><a href="#passeios">Passeios</a><a href="#ingressos">Ingressos</a><a href="#destinos">Destinos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
+   <nav id="home-navigation" aria-label="Navegação principal"><a href="#inicio" class="active" aria-current="page">Início</a><a href="#passeios">Passeios</a><a href="#ingressos">Ingressos</a>{showDestinations && <a href="#destinos">Destinos</a>}<a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
    <div class="header-actions"><a class="header-search icon-button" href="/passeios" aria-label="Ver passeios"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></a><a class="green-button header-whatsapp" href={wa} target="_blank" rel="noopener noreferrer" aria-label="Fale no WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Fale no WhatsApp</span></a></div>
   </div></header>
   <main>
@@ -56,12 +57,12 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
     <a href="/ingressos"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span>Ingressos</span></a>
     <a href="#contato"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Contato</span></a>
    </nav></div>
-   <section id="destinos" class="home-section destinations-section" aria-labelledby="destinations-title"><div class="home-container">
-    <div class="section-heading"><div><h2 id="destinations-title">Os mais procurados pelos nossos clientes.</p></div><a class="view-all" href="/passeios">Ver todos os destinos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+   {showDestinations && <section id="destinos" class="home-section destinations-section" aria-labelledby="destinations-title"><div class="home-container">
+    <div class="section-heading"><div><h2 id="destinations-title">Os mais procurados pelos nossos clientes.</h2></div><a class="view-all" href="/passeios">Ver todos os destinos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     <div class="destination-grid">{destinations.map(d => <a class="destination-card" href="/passeios"><img src={d.image} alt={d.name === 'Gramado' ? 'Arquitetura e jardins da Serra Gaúcha' : d.name} loading="lazy" width="400" height="440"/><div class="destination-caption"><h3>{d.name}</h3><span>Passeios e ingressos</span></div><span class="destination-arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>)}</div>
-   </div></section>
+   </div></section>}
    <section id="passeios" class="home-section" aria-labelledby="tours-title"><div class="home-container">
-    <div class="section-heading"><div><h2 id="tours-title">Passeios para tornar sua viagem inesquecível.</p></div><a class="view-all" href="/passeios">Ver todos os passeios <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    <div class="section-heading"><div><h2 id="tours-title">Passeios para tornar sua viagem inesquecível.</h2></div><a class="view-all" href="/passeios">Ver todos os passeios <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     <div class="product-grid">{tours.map(t => <article class="product-card"><a class="product-image" href={t.href} tabindex="-1" aria-hidden="true"><img src={t.image} alt="" loading="lazy" width="400" height="300"/><span class="product-tag">{t.tag}</span></a><div class="product-content"><h3><a href={t.href}>{t.name}</a></h3><p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>{t.location}</p><p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg>{t.detail}</p><div class="product-price"><span>A partir de</span><strong>{money(t.price)}</strong></div><a class="green-button product-button" href={t.href}>Ver detalhes</a></div></article>)}</div>
    </div></section>
    <section id="sobre" class="home-container experience-section" aria-labelledby="experience-title"><div class="experience-banner"><img src="/images/olivas/olivas_card.jpg" alt="Vales e natureza em Olivas de Gramado" loading="lazy" width="2500" height="1160"/><div class="experience-copy"><p class="eyebrow">Viva novas histórias</p><h2 id="experience-title">Experiências que<br/>ficam para sempre</h2><p>Passeios, ingressos e roteiros completos com atendimento especializado.</p><a class="gold-button" href="/passeios">Explorar passeios <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="experience-details"><p><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg><span>Roteiros personalizados</span></p><p><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span>Planeje no seu ritmo</span></p><p><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Suporte no WhatsApp</p><p><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Sua viagem bem cuidada</span></p></div></div></section>
