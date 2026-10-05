@@ -89,7 +89,6 @@
 .experience-details{flex-shrink:0;width:300px;background:#fffffff2;color:#20291f;border-radius:15px;padding:24px 27px;display:grid;gap:22px;font-size:13px}
 .experience-details p{display:flex;align-items:center;gap:15px}
 .tickets-section{padding-bottom:45px}
-.ticket-grid .product-image{height:155px}
 .ticket-price{margin-top:auto;padding-top:6px}
 
 .home-footer{background:var(--deep);color:#eeeadd;padding-block:36px 18px}
@@ -142,7 +141,6 @@ body:has(.stander-home) .whatsapp-button{background:#123e2a;color:white;animatio
 .destination-arrow .icon{width:15px}
 .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .product-image{height:215px}
-.ticket-grid .product-image{height:190px}
 .experience-banner{padding:28px;gap:20px}
 .experience-copy h2{font-size:32px}
 .experience-details{width:235px;padding:22px 18px;font-size:12px}
@@ -193,8 +191,6 @@ body:has(.stander-home) .whatsapp-button{background:#123e2a;color:white;animatio
 .experience-copy .gold-button{font-size:13px;margin-top:17px;padding:11px 20px}
 .experience-details{display:none}
 .tickets-section{padding-bottom:27px}
-.ticket-grid .product-card{flex-basis:65%}
-.ticket-grid .product-image{height:150px}
 .home-footer{padding-top:28px}
 .footer-main{grid-template-columns:1fr;gap:24px}
 .footer-links{flex-wrap:wrap;gap:15px}
@@ -222,3 +218,5 @@ html:has(.stander-home){scroll-behavior:auto}
 
 .hero-links-wrap + .home-section{padding-top:70px}
 @media(max-width:540px){.hero-links-wrap + .home-section{padding-top:55px}}
+
+.tickets-section{background:#f0f4f1;margin-top:28px;padding-bottom:40px}

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
+import TicketList from '../components/TicketList.astro';
+import { ingressos } from '../data/ingressos';
 import { readdirSync } from 'node:fs';
 const heroImages = readdirSync(new URL('../../public/images/hero/', import.meta.url))
  .filter(name => /\.(jpe?g|png|webp|avif)$/i.test(name))
@@ -20,12 +22,7 @@ const tours = [
  {name:'Olivas de Gramado',image:'/images/olivas/olivas_card.jpg',tag:'Natureza',location:'Gramado',detail:'Translado · 1 a 4 pessoas',price:200,href:'/passeio/transporte-olivas'},
  {name:'Skyglass Canela',image:'/images/skyglass/skyglass.jpg',tag:'Aventura',location:'Canela',detail:'Translado · 1 a 4 pessoas',price:200,href:'/passeio/transporte-sky-glass'}
 ];
-const tickets = [
- {name:'ParksNet Passaporte',image:'https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/render/image/public/product-images/products/1788357118532-q366rrkc9m.webp?width=800&resize=contain&quality=80',location:'Gramado e Canela',detail:'Parques e atrações',href:'/parksnet'},
- {name:'Parque da Mônica',image:'https://d335luupugsy2.cloudfront.net/cms/files/434197/1752601582/$bqovgdvnd0q',location:'Gramado',detail:'Diversão em família',href:'/parque-da-monica'},
- {name:'Ferrovia Secreta Hector',image:'/images/ferrovia hector.webp',location:'Gramado',detail:'Gastronomia e magia',href:'/ferrovia-secreta'},
- {name:'Kongo Pizzaria',image:'https://assets.planne.com.br/apps/34FM2SZ2A3S/images/_/Pga3b6vi0z0NM39FINKKOZ71F8gDhDyoGpqDNYzE.jpg',location:'Gramado',detail:'Rodízio e show',href:'/kongo-pizzaria'}
-];
+
 const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(price);
 ---
 <BaseLayout title="Stander Turismo | Experiências inesquecíveis na Serra Gaúcha" description="Viva o melhor de Gramado, Canela e da Serra Gaúcha. Passeios, ingressos e roteiros personalizados com a Stander Turismo." image="/images/logo_sander_p.jpeg">
@@ -68,7 +65,7 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
    <section id="sobre" class="home-container experience-section" aria-labelledby="experience-title"><div class="experience-banner"><img src="/images/olivas/olivas_card.jpg" alt="Vales e natureza em Olivas de Gramado" loading="lazy" width="2500" height="1160"/><div class="experience-copy"><p class="eyebrow">Viva novas histórias</p><h2 id="experience-title">Experiências que<br/>ficam para sempre</h2><p>Passeios, ingressos e roteiros completos com atendimento especializado.</p><a class="gold-button" href="/passeios">Explorar passeios <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="experience-details"><p><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg><span>Roteiros personalizados</span></p><p><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span>Planeje no seu ritmo</span></p><p><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Suporte no WhatsApp</p><p><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Sua viagem bem cuidada</span></p></div></div></section>
    <section id="ingressos" class="home-section tickets-section" aria-labelledby="tickets-title"><div class="home-container">
     <div class="section-heading"><div><h2 id="tickets-title">Ingressos e Atrações</h2><p>Garanta seus ingressos para as principais atrações da região.</p></div><a class="view-all" href="/ingressos">Ver todos os ingressos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-    <div class="product-grid ticket-grid">{tickets.map(t => <article class="product-card"><a class="product-image" href={t.href} tabindex="-1" aria-hidden="true"><img src={t.image} alt="" loading="lazy" width="400" height="300"/></a><div class="product-content"><h3><a href={t.href}>{t.name}</a></h3><p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>{t.location}</p><p class="product-meta">{t.detail}</p><div class="ticket-price">Confira valores e disponibilidade</div><a class="green-button product-button" href={t.href}>Ver ingressos</a></div></article>)}</div>
+    <TicketList items={ingressos} preview />
    </div></section>
   </main>
   <footer id="contato" class="home-footer"><div class="home-container footer-main"><div><a class="footer-brand" href="/">Stander <span>Turismo</span></a><p>Seu próximo destino. Uma nova história.</p></div><div><h2>Vamos planejar sua viagem?</h2><a href={wa} target="_blank" rel="noopener noreferrer">WhatsApp: (47) 98488-7630</a><a href="mailto:felipetorreStander@gmail.com">felipetorreStander@gmail.com</a></div><div class="footer-links"><a href="/passeios">Passeios</a><a href="/ingressos">Ingressos</a><a href="/translados">Translados</a><a href="https://www.instagram.com/Standerturismo/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div><div class="home-container footer-bottom">© {new Date().getFullYear()} Stander Turismo. Todos os direitos reservados.</div></footer>
