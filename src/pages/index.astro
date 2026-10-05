@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TravelGuide from '../components/TravelGuide.astro';
 import '../styles/home.css';
 import TicketList from '../components/TicketList.astro';
 import { ingressos } from '../data/ingressos';
@@ -9,6 +10,8 @@ const heroImages = readdirSync(new URL('../../public/images/hero/', import.meta.
  .sort((a, b) => a.localeCompare(b, 'pt-BR', { numeric: true }))
  .map(name => `/images/hero/${encodeURIComponent(name)}`);
 const wa = 'https://wa.me/5547984887630';
+// Substitua pelo link definitivo do PDF quando estiver disponível.
+const guidePdfUrl = '/downloads/guia-gramado-canela.pdf';
 const showDestinations = false;
 const destinations = [
  {name:'Gramado',image:'/images/Nova_Petropolis.jpg'},
@@ -68,6 +71,7 @@ const money = (price: number) => new Intl.NumberFormat('pt-BR',{style:'currency'
     <div class="section-heading"><div><h2 id="tickets-title">Ingressos e Atrações</h2><p>Garanta seus ingressos para as principais atrações da região.</p></div><a class="view-all" href="/ingressos">Ver todos os ingressos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     <TicketList items={ingressos} preview />
    </div></section>
+   <TravelGuide pdfUrl={guidePdfUrl} />
   </main>
   <footer id="contato" class="home-footer"><div class="home-container footer-main"><div><a class="footer-brand" href="/">Stander <span>Turismo</span></a><p>Seu próximo destino. Uma nova história.</p></div><div><h2>Vamos planejar sua viagem?</h2><a href={wa} target="_blank" rel="noopener noreferrer">WhatsApp: (47) 98488-7630</a><a href="mailto:felipetorreStander@gmail.com">felipetorreStander@gmail.com</a></div><div class="footer-links"><a href="/passeios">Passeios</a><a href="/ingressos">Ingressos</a><a href="/translados">Translados</a><a href="https://www.instagram.com/Standerturismo/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div><div class="home-container footer-bottom">© {new Date().getFullYear()} Stander Turismo. Todos os direitos reservados.</div></footer>
  </div>
