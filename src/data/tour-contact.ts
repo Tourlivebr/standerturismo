@@ -1,7 +1,7 @@
 ﻿// Reative para reutilizar as páginas completas de passeios em outros projetos.
 export const tourDetailPagesEnabled = false;
 export function tourWhatsAppUrl(name: string) {
-  const message = `Olá, Stander Turismo! Gostaria de saber mais sobre ${name} e consultar valores e disponibilidade.`;
+  const message = `Olá, Stander Turismo! Gostaria de saber mais sobre ${name} e Comprar com Desconto e disponibilidade.`;
   return `https://wa.me/5547984887630?text=${encodeURIComponent(message)}`;
 }
 export const tourSummaries: Record<string, string> = {

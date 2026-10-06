@@ -1,46 +1,25 @@
 ﻿---
 interface Props { pdfUrl?: string; }
 const { pdfUrl } = Astro.props;
-const defaultMessage = 'Olá! Quero acessar o guia em PDF com as principais atrações de Gramado e Canela. Pode me enviar a senha de acesso, por favor?';
+const defaultMessage = 'Olá, Stander Turismo! Baixei o guia Atracoes-Serra-Gaucha-Stander-Turismo- 2026 e gostaria de solicitar a senha de acesso ao PDF, por favor.';
+const passwordUrl = `https://wa.me/5547984887630?text=${encodeURIComponent(defaultMessage)}`;
 ---
 <section class="travel-guide" aria-labelledby="guide-heading">
  <div class="guide-panel">
   <img class="guide-background" src="/images/olivas/olivas_card.jpg" alt="" aria-hidden="true" loading="lazy" width="2500" height="1160" />
   <div class="guide-art" aria-hidden="true"><svg viewBox="0 0 80 96"><path d="M14 4h34l18 18v66a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4Z"/><path d="M48 4v18h18M23 43h30M23 54h30M23 65h20"/></svg><span>GRAMADO<br />& CANELA</span></div>
-  <div class="guide-copy"><p class="guide-eyebrow">Sua viagem começa com boas ideias</p><h2 id="guide-heading">Gramado e Canela<br />na palma da sua mão</h2><p>Um guia em PDF com as principais atrações para você planejar os melhores momentos da sua viagem.</p><button type="button" class="guide-trigger" aria-haspopup="dialog">Quero meu guia em PDF <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></svg></button><small>Solicite a senha de acesso pelo WhatsApp.</small></div>
+  <div class="guide-copy"><p class="guide-eyebrow">Sua viagem começa com boas ideias</p><h2 id="guide-heading">Gramado e Canela<br />na palma da sua mão</h2><p>Um guia em PDF com as principais atrações para você planejar os melhores momentos da sua viagem.</p><div class="guide-actions">{pdfUrl && <a class="guide-trigger" href={pdfUrl} download="Atracoes-Serra-Gaucha-Stander-Turismo- 2026.pdf">Baixar guia em PDF <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></svg></a>}<a class="guide-trigger guide-password" href={passwordUrl} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.6 7.7L3 21l1.8-4.5A9 9 0 1 1 21 11.5M8 7c0 5 4 9 9 9l1-3-3-1-1 1c-2-1-3-2-4-4l1-1-1-3z"/></svg>Solicitar senha no WhatsApp</a></div><small>Solicite a senha de acesso pelo WhatsApp.</small></div>
  </div>
 </section>
-<dialog class="guide-dialog" aria-labelledby="guide-dialog-title" aria-describedby="guide-dialog-description">
- <button class="guide-close" type="button" aria-label="Fechar">×</button>
- <p class="guide-eyebrow">Guia de viagem</p><h2 id="guide-dialog-title">Seu guia de Gramado e Canela</h2><p id="guide-dialog-description">Baixe seu PDF e solicite a senha de acesso pelo WhatsApp. Você pode editar a mensagem abaixo.</p>
- <form class="guide-request">
-  <label for="guide-message">Sua mensagem</label><textarea id="guide-message" name="message" rows="5" required maxlength="2000">{defaultMessage}</textarea>
-  <button class="guide-whatsapp" type="submit">Solicitar senha no WhatsApp <span aria-hidden="true">↗</span></button>
- </form>
- {pdfUrl && <a class="guide-download" href={pdfUrl} download>Baixar PDF</a>}
-</dialog>
-<script>
- const dialog = document.querySelector<HTMLDialogElement>('.guide-dialog');
- const trigger = document.querySelector<HTMLButtonElement>('.guide-trigger');
- trigger?.addEventListener('click', () => dialog?.showModal());
- dialog?.querySelector('.guide-close')?.addEventListener('click', () => dialog.close());
- dialog?.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close(); } });
- dialog?.querySelector<HTMLFormElement>('.guide-request')?.addEventListener('submit', event => {
-  event.preventDefault();
-  const form = event.currentTarget as HTMLFormElement;
-  const message = String(new FormData(form).get('message') || '').trim();
-  if (!message) { form.querySelector<HTMLTextAreaElement>('textarea')?.focus(); return; }
-  window.open(`https://wa.me/5547984887630?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
- });
-</script>
 <style>
  .travel-guide{padding:35px 0 48px;background:#f8f7f3}
  .guide-panel{position:relative;isolation:isolate;overflow:hidden;width:min(1180px,calc(100% - 96px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:50px;min-height:390px;padding:48px 55px;background:#123e2a;border-radius:24px;color:#fff;box-shadow:0 18px 45px #123e2a18}.guide-background{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 55%}.guide-panel::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,35,24,.97) 0%,rgba(6,35,24,.86) 40%,rgba(6,35,24,.45) 70%,rgba(6,35,24,.16) 100%)}
  .guide-art{position:relative;order:2;flex:0 0 175px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;min-height:225px;border:1px solid #d4aa4d77;background:#0c3028a6;backdrop-filter:blur(8px);box-shadow:0 16px 35px #0003;border-radius:18px;transform:rotate(5deg)}
  .guide-art svg{width:65px;height:78px;fill:none;stroke:#e4c16c;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.guide-art span{font:600 17px Georgia,serif;text-align:center;letter-spacing:2px;color:#e4c16c}
  .guide-copy{order:1;max-width:550px}.guide-eyebrow{text-transform:uppercase;font:600 11px Arial,sans-serif;letter-spacing:1.4px;color:#e4c16c;margin:0 0 12px}.guide-copy h2{font:500 36px/1.1 Georgia,serif!important;color:#fff!important;margin:0 0 15px!important}.guide-copy>p:not(.guide-eyebrow){font:15px/1.6 Arial,sans-serif;margin:0;max-width:540px;color:#e4eae5}
- .guide-trigger{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:47px;margin-top:22px;padding:12px 25px;border:0;border-radius:999px;background:#d4aa4d;color:#08291c;font:600 14px Arial,sans-serif;cursor:pointer}.guide-trigger:hover{background:#e4c16c}.guide-trigger svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.guide-copy small{display:block;margin-top:11px;font:12px Arial,sans-serif;color:#cad9cf}
- .guide-dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);overflow:auto;margin:auto;padding:34px;border:0;border-radius:22px;background:#fff;box-shadow:0 20px 80px #0004;color:#25392d;font-family:Arial,sans-serif}.guide-dialog::backdrop{background:#06251899;backdrop-filter:blur(3px)}.guide-close{position:absolute;right:12px;top:10px;width:36px;height:36px;background:transparent;border:0;border-radius:50%;font-size:28px;cursor:pointer;color:#123e2a}.guide-dialog h2{font:500 28px/1.15 Georgia,serif;margin:0 0 13px;color:#123e2a}.guide-dialog>p:not(.guide-eyebrow){font-size:14px;line-height:1.6;margin-bottom:20px;color:#637268}.guide-request label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}.guide-request textarea{display:block;resize:vertical;width:100%;padding:13px;border:1px solid #d8e0d9;border-radius:12px;font:14px/1.5 Arial,sans-serif;background:#f8faf8;color:#263d2e}.guide-whatsapp{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:18px;padding:14px;border:0;border-radius:12px;background:#123e2a;color:#fff;font:600 14px Arial,sans-serif;cursor:pointer}.guide-whatsapp:hover{background:#1c573d}.guide-download{display:block;text-align:center;margin-top:16px;color:#123e2a;text-decoration:underline;font-size:14px}.guide-dialog :focus-visible,.guide-trigger:focus-visible{outline:3px solid #c99f46;outline-offset:4px}
+ .guide-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.guide-trigger{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:47px;margin-top:0;padding:12px 25px;border:0;border-radius:999px;background:#d4aa4d;color:#08291c;font:600 14px Arial,sans-serif;cursor:pointer}.guide-trigger:hover{background:#e4c16c}.guide-trigger svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.guide-copy small{display:block;margin-top:11px;font:12px Arial,sans-serif;color:#cad9cf}
+ .guide-trigger:focus-visible{outline:3px solid #c99f46;outline-offset:4px}
+ .guide-trigger.guide-password{background:#123e2acc;border:1px solid #e4c16c88;color:#fff}.guide-trigger.guide-password:hover{background:#1c573d}.guide-actions a{text-decoration:none}.guide-copy .guide-actions .guide-trigger{color:#08291c}.guide-copy .guide-actions .guide-password{color:#fff}
  @media(max-width:800px){.guide-panel{width:calc(100% - 40px);gap:25px;padding:35px 30px}.guide-art{flex-basis:140px;min-height:190px}.guide-copy h2{font-size:30px!important}}
- @media(max-width:540px){.travel-guide{padding:25px 0 35px}.guide-panel{width:calc(100% - 32px);padding:155px 23px 30px;gap:20px;flex-direction:column;align-items:flex-start;min-height:470px}.guide-panel::before{background:linear-gradient(180deg,rgba(6,35,24,.12) 0%,rgba(6,35,24,.55) 25%,rgba(6,35,24,.94) 48%,rgba(6,35,24,.98) 100%)}.guide-background{object-position:62% center}.guide-art{display:none}.guide-copy h2{font-size:30px!important}.guide-copy>p:not(.guide-eyebrow){font-size:14px}.guide-trigger{width:100%;padding-inline:15px}.guide-copy small{text-align:center}.guide-dialog{padding:30px 22px}.guide-dialog h2{font-size:25px}}
+ @media(max-width:540px){.travel-guide{padding:25px 0 35px}.guide-panel{width:calc(100% - 32px);padding:155px 23px 30px;gap:20px;flex-direction:column;align-items:flex-start;min-height:470px}.guide-panel::before{background:linear-gradient(180deg,rgba(6,35,24,.12) 0%,rgba(6,35,24,.55) 25%,rgba(6,35,24,.94) 48%,rgba(6,35,24,.98) 100%)}.guide-background{object-position:62% center}.guide-art{display:none}.guide-copy h2{font-size:30px!important}.guide-copy>p:not(.guide-eyebrow){font-size:14px}.guide-trigger{width:100%;padding-inline:15px}.guide-copy small{text-align:center}}
 </style>
