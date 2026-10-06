@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NatalHeroVideo from './NatalHeroVideo.astro';
+import CadasturBadge from './CadasturBadge.astro';
 import TravelGuide from '../components/TravelGuide.astro';
 import TravelFAQ from '../components/TravelFAQ.astro';
 import AboutUs from '../components/AboutUs.astro';
@@ -96,7 +97,7 @@ const catalogCards = ticketsCatalog ? ingressos.map(ticket => ({
    <TravelFAQ />
    </>}
   </main>
-  <footer id="contato" class="home-footer"><div class="home-container footer-main"><div><a class="footer-brand" href="/">Stander <span>Turismo</span></a><p>Seu próximo destino. Uma nova história.</p></div><div><h2>Vamos planejar sua viagem?</h2><a href={wa} target="_blank" rel="noopener noreferrer">WhatsApp: (47) 98488-7630</a><a href="mailto:felipetorrestander@gmail.com">felipetorrestander@gmail.com</a></div><div class="footer-links"><a href="/passeios">Passeios</a><a href="/ingressos">Ingressos</a><a href="/translados">Translados</a><a href="https://www.instagram.com/Standerturismo/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div><div class="home-container footer-bottom">© {new Date().getFullYear()} Stander Turismo. Todos os direitos reservados.</div></footer>
+  <footer id="contato" class="home-footer"><div class="home-container footer-main"><div><a class="footer-brand footer-brand-with-logo" href="/" aria-label="Stander Turismo — início"><img src="/images/logo_sander_p.jpeg" alt="" width="80" height="80" loading="lazy"/><span class="footer-brand-name">Stander <span>Turismo</span></span></a><p>Seu próximo destino. Uma nova história.</p></div><div><h2>Vamos planejar sua viagem?</h2><a href={wa} target="_blank" rel="noopener noreferrer">WhatsApp: (47) 98488-7630</a><a href="mailto:felipetorrestander@gmail.com">felipetorrestander@gmail.com</a><CadasturBadge /></div><div class="footer-navigation"><h2>Explore</h2><nav class="footer-links" aria-label="Navegação do rodapé"><a href="/passeios">Passeios</a><a href="/ingressos">Ingressos</a><a href="/translados">Translados</a><a href="https://www.instagram.com/Standerturismo/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></nav></div></div><div class="home-container footer-bottom">© {new Date().getFullYear()} Stander Turismo. Todos os direitos reservados.</div></footer>
  </div>
 </BaseLayout>
 <script>

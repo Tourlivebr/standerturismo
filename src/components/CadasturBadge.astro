@@ -1,0 +1,15 @@
+---
+const cadasturUrl = 'https://cadastur.turismo.gov.br/cadastur/#!/public/qrcode/60459321000180';
+---
+<a class="cadastur-badge" href={cadasturUrl} target="_blank" rel="noopener noreferrer" aria-label="Consultar cadastro da Stander Turismo no Cadastur — abre em nova aba">
+ <img src="/images/cadastur.png" alt="Cadastur" width="390" height="200" loading="lazy" />
+ <span>Consultar cadastro <span aria-hidden="true">↗</span></span>
+</a>
+<style>
+ .cadastur-badge{display:inline-flex!important;flex-direction:column;align-items:flex-start;gap:0!important;width:174px;padding:0;margin-top:16px!important;border:0;background:transparent;text-decoration:none;color:#eeeadd!important;transition:opacity .2s}
+ .cadastur-badge img{display:block;width:174px;height:89px;object-fit:contain;filter:grayscale(1) invert(1);mix-blend-mode:screen}
+ .cadastur-badge>span{display:flex;align-items:center;justify-content:flex-start;gap:8px;font:500 11px/1.4 Arial,Helvetica,sans-serif;color:#d9b868}
+ .cadastur-badge:hover{opacity:.85}
+ .cadastur-badge:focus-visible{outline:3px solid #d4aa4d;outline-offset:4px}
+ @media(prefers-reduced-motion:reduce){.cadastur-badge{transition:none}.cadastur-badge:hover{transform:none}}
+</style>

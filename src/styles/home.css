@@ -282,3 +282,13 @@ html:has(.stander-home){scroll-behavior:auto}
 @media(max-width:540px){.stander-home h1.hero-natal-title{max-width:100%;letter-spacing:-1px}.hero-festive-stars{font-size:21px;gap:14px;margin-bottom:13px}.hero-natal-lead{font-size:29px}.hero-natal-name{font-size:clamp(58px,15vw,76px);letter-spacing:-2px}.hero-natal-spark{right:-25px;font-size:23px}.hero-natal-brand{margin-top:-4px;font-size:clamp(23px,6.5vw,29px)}}
 
 .tour-summary.ticket-card-description{-webkit-line-clamp:2;line-clamp:2}
+
+.home-footer{padding-top:42px;border-top:1px solid #d4aa4d44}
+.footer-main{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(140px,.65fr);gap:48px}
+.footer-brand-with-logo{display:flex;align-items:center;gap:15px;width:fit-content}
+.footer-brand-with-logo>img{display:block;width:72px;height:72px;object-fit:contain;border-radius:14px;background:#fff}
+.footer-brand-with-logo .footer-brand-name{margin:0;color:#eeeadd;font-size:25px}
+.footer-brand-name>span{margin-top:5px;font-size:13px;letter-spacing:2px}
+.footer-navigation h2{margin-bottom:16px}
+@media(max-width:800px){.footer-main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.footer-navigation{grid-column:1/-1}.footer-navigation .footer-links{flex-wrap:wrap}}
+@media(max-width:540px){.home-footer{padding-top:30px}.footer-main{grid-template-columns:minmax(0,1fr);gap:30px}.footer-brand-with-logo>img{width:64px;height:64px}.footer-navigation{grid-column:auto}.footer-navigation .footer-links{gap:14px 22px}}
