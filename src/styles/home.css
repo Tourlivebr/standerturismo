@@ -269,3 +269,14 @@ html:has(.stander-home){scroll-behavior:auto}
 .hero-audio-toggle[aria-pressed="true"] .audio-on{display:block}
 .hero-natal-cta{margin-top:24px}
 @media(max-width:540px){.hero-audio-toggle{right:16px;bottom:48px}.hero-natal-cta{font-size:13px;margin-top:20px}}
+
+.stander-home h1.hero-natal-title{max-width:700px;margin:0;font-family:Georgia,'Times New Roman',serif;line-height:1.05;letter-spacing:-1px;font-weight:400;color:#fff8eb;text-shadow:0 3px 18px #0009}
+.hero-natal-heading{display:block;position:relative;width:fit-content}
+.hero-festive-stars{display:flex;align-items:center;gap:18px;margin-bottom:16px;font-size:24px;line-height:1;color:#efd294;text-shadow:0 0 18px #eabc5870}
+.hero-festive-stars>span{font-size:15px}
+.hero-natal-lead{display:block;font-size:clamp(29px,3.2vw,44px);font-style:italic;letter-spacing:-.6px;margin-bottom:4px}
+.hero-natal-name{position:relative;display:block;font-size:clamp(66px,7vw,96px);font-weight:700;letter-spacing:-3px;color:#f4d58d;text-shadow:0 3px 18px #0008,0 0 32px #d8a84530}
+.hero-natal-spark{position:absolute;right:-38px;top:0;font-size:32px;font-weight:400;color:#fff3d2;letter-spacing:0}
+.hero-natal-brand{display:block;margin-top:-6px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(25px,2.8vw,38px);font-style:italic;line-height:1.25;font-weight:400;letter-spacing:-.6px;color:#fff8eb}
+.hero-natal-brand strong{font-weight:400}
+@media(max-width:540px){.stander-home h1.hero-natal-title{max-width:100%;letter-spacing:-1px}.hero-festive-stars{font-size:21px;gap:14px;margin-bottom:13px}.hero-natal-lead{font-size:29px}.hero-natal-name{font-size:clamp(58px,15vw,76px);letter-spacing:-2px}.hero-natal-spark{right:-25px;font-size:23px}.hero-natal-brand{margin-top:-4px;font-size:clamp(23px,6.5vw,29px)}}
