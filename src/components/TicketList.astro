@@ -5,14 +5,11 @@ const { items, preview = false } = Astro.props;
 const listId = preview ? "ticket-preview-list" : "ticket-catalog-list";
 ---
 <div id={listId} class:list={['ticket-list', { 'ticket-preview': preview }]}>
- {items.map(ticket => <a class="ticket-row" href={`/${ticket.slug}`}>
+ {items.map(ticket => <a class="ticket-row" href={ticket.linkOficial} target="_blank" rel="noopener noreferrer">
   <img class="ticket-thumbnail" src={ticket.imagem} alt="" width="140" height="125" loading="lazy" decoding="async" />
   <div class="ticket-information">
    <h3>{ticket.titulo}</h3>
-   <div class="ticket-facts">
-    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>{ticket.slug === 'parksnet' ? 'Gramado e Canela' : 'Gramado'}</span>
-    <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{ticket.duracao.split(' (')[0]}</span>
-   </div>
+   <p class="ticket-description">{ticket.subtitulo}</p>
    <p class="ticket-value">Consultar valores</p>
   </div>
   <span class="ticket-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg><span class="sr-only">Ver ingresso</span></span>
@@ -27,9 +24,7 @@ const listId = preview ? "ticket-preview-list" : "ticket-catalog-list";
  .ticket-thumbnail{width:122px;height:125px;flex-shrink:0;border-radius:18px;object-fit:cover;background:#edf1ed}
  .ticket-information{flex:1;min-width:0}
  .ticket-information h3{margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:19px;line-height:1.2;font-weight:750;color:#29352e}
- .ticket-facts{display:flex;flex-wrap:wrap;gap:8px 14px;color:#697970;font-size:12px;line-height:1.4}
- .ticket-facts span{display:flex;align-items:flex-start;gap:5px}
- .ticket-facts svg{width:14px;height:14px;margin-top:1px;flex-shrink:0;fill:none;stroke:#215039;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+ .ticket-description{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;margin:0;color:#697970;font-size:13px;line-height:1.45}
  .ticket-information .ticket-value{margin:12px 0 0;color:#123e2a;font-size:14px;font-weight:700}
  .ticket-open{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border-radius:15px;background:#eef3ef;color:#123e2a}
  .ticket-open svg,.ticket-more svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -37,7 +32,7 @@ const listId = preview ? "ticket-preview-list" : "ticket-catalog-list";
  .ticket-more button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 30px;border-radius:999px;background:#123e2a;color:white;text-decoration:none;font:600 14px Arial,Helvetica,sans-serif;border:0;cursor:pointer}
  .ticket-more button:hover{background:#1c573d}
  @media(max-width:900px){.ticket-list{grid-template-columns:1fr}}
- @media(max-width:540px){.ticket-list{gap:12px}.ticket-row{gap:10px;padding:14px 12px;border-radius:20px;min-height:136px}.ticket-thumbnail{width:88px;height:106px;border-radius:14px}.ticket-information h3{font-size:15px;margin-bottom:8px;line-height:1.25}.ticket-facts{font-size:11px;gap:5px}.ticket-information .ticket-value{font-size:12px;margin-top:9px}.ticket-open{width:30px;height:36px;border-radius:11px}.ticket-open svg{width:18px;height:18px}.ticket-preview:not(.is-expanded) .ticket-row:nth-child(n+5){display:none}.ticket-more{display:block}}
+ @media(max-width:540px){.ticket-list{gap:12px}.ticket-row{gap:10px;padding:14px 12px;border-radius:20px;min-height:136px}.ticket-thumbnail{width:88px;height:106px;border-radius:14px}.ticket-information h3{font-size:15px;margin-bottom:8px;line-height:1.25}.ticket-description{font-size:12px}.ticket-information .ticket-value{font-size:12px;margin-top:9px}.ticket-open{width:30px;height:36px;border-radius:11px}.ticket-open svg{width:18px;height:18px}.ticket-preview:not(.is-expanded) .ticket-row:nth-child(n+5){display:none}.ticket-more{display:block}}
  @media(prefers-reduced-motion:reduce){.ticket-row{transition:none}}
 </style>
 

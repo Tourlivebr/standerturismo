@@ -1,124 +1,94 @@
+// Atrações ParksNet na ordem solicitada; preserve o código da agência nos links.
 export const ingressos = [
   {
-    id: 1,
-    titulo: "ParksNet Passaporte",
-    subtitulo: "Todos os parques da Serra Gaúcha em um só lugar",
-    categoria: "PASSEIOS E PARQUES",
-    imagem: "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/render/image/public/product-images/products/1788357118532-q366rrkc9m.webp?width=800&resize=contain&quality=80",
-    avaliacao: 4.9,
-    totalAvaliacoes: 1280,
-    slug: "parksnet",
-    linkOficial: "https://parksnet.com.br/passeios-e-ingressos-serra-gaucha-com-a-parksnet?bookingAgency=5022",
-    duracao: "Varia conforme atração escolhida",
-    tags: [
-      "Snowland, NBA Park, Skyglass",
-      "Pague em até 10x sem juros",
-      "Cancelamento garantido"
-    ]
+    "id": 1,
+    "titulo": "Lumni",
+    "subtitulo": "Um passeio noturno entre luzes e cenários mágicos para toda a família.",
+    "categoria": "PARQUE DE LUZES",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/lumni-gramado-ingressos.webp",
+    "slug": "lumni",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/lumni?bookingAgency=4176"
   },
   {
-    id: 2,
-    titulo: "Kongo Pizzaria",
-    subtitulo: "Uma experiência animal em meio à selva",
-    categoria: "PIZZARIA TEMÁTICA",
-    imagem: "https://assets.planne.com.br/apps/34FM2SZ2A3S/images/_/Pga3b6vi0z0NM39FINKKOZ71F8gDhDyoGpqDNYzE.jpg",
-    avaliacao: 4.8,
-    totalAvaliacoes: 630,
-    slug: "kongo-pizzaria",
-    linkOficial: "https://vendas.kongogramado.com.br?ac=3QS01LBV0I",
-    duracao: "~2h30 a 3h (rodízio + show temático)",
-    tags: [
-      "Selva temática Maik, Ary, Aquila",
-      "Rodízio de pizzas premium",
-      "Shows: Aventura na Selva, Alguém viu o Maik, Sons da Natureza"
-    ],
-    whatsappText: "Olá! Gostaria de reservar o ingresso Kongo Pizzaria (Selva temática de Gramado). Preenchido pelo site Stander Turismo."
+    "id": 2,
+    "titulo": "Space Adventure",
+    "subtitulo": "Explore o universo com artefatos da NASA, simuladores e planetário.",
+    "categoria": "EXPERIÊNCIA ESPACIAL",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/sopas-da-serra-gramado-melhor-preco.webp",
+    "slug": "space-adventure",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/space-adventure?bookingAgency=4176"
   },
   {
-    id: 3,
-    titulo: "Parque da Mônica",
-    subtitulo: "A magia da Vila da Mônica na Serra Gaúcha",
-    categoria: "PARQUE TEMÁTICO",
-    imagem: "https://d335luupugsy2.cloudfront.net/cms/files/434197/1752601582/$bqovgdvnd0q",
-    avaliacao: 4.8,
-    totalAvaliacoes: 1500,
-    slug: "parque-da-monica",
-    linkOficial: "https://ingressos.viladamonica.com.br/carrinho/ativarCupom?nrCupom=VANDERLEIFAUSTINO&byUrl=true",
-    duracao: "Dia todo (funcionamento das 10h às 18h)",
-    tags: [
-      "Parque Vila da Mônica Gramado",
-      "Mais de 20 atrações",
-      "Turma da Mônica ao vivo"
-    ],
-    whatsappText: "Olá! Gostaria de reservar o ingresso do Parque da Mônica (Vila da Mônica em Gramado). Preenchido pelo site Stander Turismo."
+    "id": 3,
+    "titulo": "Parque Criamigos",
+    "subtitulo": "Brincadeiras e experiências sensoriais em um mundo de diversão.",
+    "categoria": "DIVERSÃO EM FAMÍLIA",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/oficina-criamigos-gramado-cupons-02.webp",
+    "slug": "parque-criamigos",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/parque-criamigos?bookingAgency=4176"
   },
   {
-    id: 4,
-    titulo: "Era do Fogo Fondue Temático",
-    subtitulo: "A experiência mais cavernosa de Gramado",
-    categoria: "FONDUE TEMÁTICO",
-    imagem: "https://assets.planne.com.br/apps/KXBS57CN5A8/images/_/v3wu8Q6aRqLU902MsUEdHkIpzMtHuN2NecOce9wx.png",
-    avaliacao: 4.8,
-    totalAvaliacoes: 320,
-    slug: "era-do-fogo",
-    linkOficial: "https://ingressos.eradofogo.com.br?ac=",
-    duracao: "2h30 a 3h (sessões 18h e 21h)",
-    tags: [
-      "Fondue na caverna pré-histórica",
-      "Dos criadores da Hector Pizzaria",
-      "Gruga e os cavernosos"
-    ]
+    "id": 4,
+    "titulo": "Mini Mundo",
+    "subtitulo": "Descubra construções em miniatura e cenários encantadores ao ar livre.",
+    "categoria": "PARQUE DE MINIATURAS",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/1782739377724-7130z6h0bph.webp",
+    "slug": "mini-mundo",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/mini-mundo?bookingAgency=4176"
   },
   {
-    id: 5,
-    titulo: "Ferrovia Secreta Hector",
-    subtitulo: "Sequência de comida americana no trem mágico",
-    categoria: "GASTRONOMIA TEMÁTICA",
-    imagem: "/images/ferrovia hector.webp",
-    avaliacao: 4.7,
-    totalAvaliacoes: 245,
-    slug: "ferrovia-secreta",
-    linkOficial: "https://ferroviasecreta.hectordragao.com.br?ac=0",
-    duracao: "2h30 por viagem",
-    tags: [
-      "Trem mágico do Hector",
-      "Comida americana farta",
-      "Mágica com Edgar Faísca"
-    ]
+    "id": 5,
+    "titulo": "NBA Park",
+    "subtitulo": "Entre no mundo do basquete com jogos interativos e experiências da NBA.",
+    "categoria": "ESPORTE E DIVERSÃO",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/nba-park-exceed-park-selfie-gramado-gramado-ofertas.webp",
+    "slug": "nba-park",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/nba-park?bookingAgency=4176"
   },
   {
-    id: 6,
-    titulo: "Hector Pizzaria",
-    subtitulo: "Rodízio de Discos de Sabor na Escola de Magia Ônyra",
-    categoria: "RODÍZIO DE PIZZA",
-    imagem: "https://assets.planne.com.br/apps/56TSFCYPGR3/images/_/6XcTkjcRN2I8ApRkvYfnN7kGtCCPCd7fifjyAMpH.jpg",
-    avaliacao: 4.9,
-    totalAvaliacoes: 512,
-    slug: "hector-pizzaria",
-    linkOficial: "https://ingressos.hectordragao.com.br?ac=",
-    duracao: "2h a 2h30 (rodízio 80+ sabores)",
-    tags: [
-      "Escola de Magia Ônyra",
-      "Mais de 80 sabores de pizza",
-      "Pocket shows com personagens"
-    ]
+    "id": 6,
+    "titulo": "Super Carros",
+    "subtitulo": "Conheça de perto supercarros em uma exposição para fãs de velocidade.",
+    "categoria": "CARROS ESPORTIVOS",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/super-carros-gramado-cupons-02.webp",
+    "slug": "super-carros",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/super-carros?bookingAgency=4176"
   },
   {
-    id: 7,
-    titulo: "Gatzz Fondue & Show",
-    subtitulo: "Dinner show de Broadway na Serra Gaúcha",
-    categoria: "DINNER SHOW",
-    imagem: "https://fondue.gatzz.com.br/ambiente/gatzz1.jpg",
-    avaliacao: 4.8,
-    totalAvaliacoes: 380,
-    slug: "gatzz",
-    linkOficial: "https://www.gatzz.com.br?ac=",
-    duracao: "~3h (jantar + espetáculo 22 artistas)",
-    tags: [
-      "Fondue premium 3 etapas",
-      "Show com 22 artistas",
-      "Classificação 18+ (alguns espetáculos)"
-    ]
+    "id": 7,
+    "titulo": "Alpen Park",
+    "subtitulo": "Trenó alpino, montanha-russa e diversão em meio às paisagens de Canela.",
+    "categoria": "AVENTURA",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/1786560810556-ht234z1dif4.webp",
+    "slug": "alpen-park",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/alpen-park?bookingAgency=4176"
+  },
+  {
+    "id": 8,
+    "titulo": "Terra Mágica Florybal",
+    "subtitulo": "Um mundo de fantasia com dinossauros, personagens e diversão em família.",
+    "categoria": "PARQUE TEMÁTICO",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/bondinhos-skyglass-jolimont-canela-cupons.webp",
+    "slug": "parque-terra-magica-florybal",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/parque-terra-magica-florybal?bookingAgency=4176"
+  },
+  {
+    "id": 9,
+    "titulo": "Vale dos Dinossauros",
+    "subtitulo": "Dinossauros em tamanho real em uma aventura cercada pela natureza.",
+    "categoria": "AVENTURA PRÉ-HISTÓRICA",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/passaporte-grupo-dreams-7-atracoes-gramado-descontos-01.webp",
+    "slug": "vale-dos-dinossauros-canela",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/vale-dos-dinossauros-canela?bookingAgency=4176"
+  },
+  {
+    "id": 10,
+    "titulo": "Museu de Cera",
+    "subtitulo": "Encontre celebridades, heróis e personagens em cenários para fotografar.",
+    "categoria": "MUSEU TEMÁTICO",
+    "imagem": "https://myjcwvyyspwituevmdeu.supabase.co/storage/v1/object/public/product-images/products/museu-de-cera-dreamland-super-carros-c-carona-de-porsche-gramado-melhor-preco.webp",
+    "slug": "museu-de-cera",
+    "linkOficial": "https://parksnet.com.br/destino/serra-gaucha/museu-de-cera?bookingAgency=4176"
   }
 ];
 export type Ticket = (typeof ingressos)[number];
