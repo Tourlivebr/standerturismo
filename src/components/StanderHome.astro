@@ -9,8 +9,9 @@ import { tourSummaries, tourWhatsAppUrl } from '../data/tour-contact';
 import TicketList from '../components/TicketList.astro';
 import { ingressos } from '../data/ingressos';
 import { readdirSync } from 'node:fs';
-const { catalog = false } = Astro.props;
-const heroImages = catalog ? ['/images/quemsomos/hero_passeios.jpeg'] : readdirSync(new URL('../../public/images/hero/', import.meta.url))
+const { catalog: toursCatalog = false, ticketsCatalog = false } = Astro.props;
+const catalog = toursCatalog || ticketsCatalog;
+const heroImages = ticketsCatalog ? ['/images/link_ingressos.jpg'] : catalog ? ['/images/hero/hero%20(3).jpeg'] : readdirSync(new URL('../../public/images/hero/', import.meta.url))
  .filter(name => /\.(jpe?g|png|webp|avif)$/i.test(name))
  .sort((a, b) => a.localeCompare(b, 'pt-BR', { numeric: true }))
  .map(name => `/images/hero/${encodeURIComponent(name)}`);
@@ -36,12 +37,17 @@ const tours = [
  {name:'Lumini',image:'/images/lumini.webp',tag:'Uma experiência especial',location:'Gramado',detail:'Translado',href:'/passeio/lumni-transporte'}
 ];
 
-if (catalog) tours.push(
+if (toursCatalog) tours.push(
  {name:'City Tour Nova Petrópolis',image:'/images/Nova_Petropolis.jpg',tag:'Cultura e tradição',location:'Nova Petrópolis',detail:'',href:'/passeio/city-tour-nova-petropolis'},
  {name:'Tour Vinhos e Sabores',image:'/images/jolimont/Jolimont1.png',tag:'Vinhos e sabores',location:'Gramado e Canela',detail:'',href:'/passeio/tour-vinhos-e-sabores'}
 );
+const catalogCards = ticketsCatalog ? ingressos.map(ticket => ({
+ name: ticket.titulo, image: ticket.imagem, tag: ticket.categoria,
+ location: ticket.slug === 'parksnet' ? 'Gramado e Canela' : 'Gramado',
+ detail: '', href: '/' + ticket.slug, summary: ticket.subtitulo,
+})) : tours.map(tour => ({...tour, summary: tourSummaries[tour.href.split('/').pop()!]}));
 ---
-<BaseLayout title={catalog ? "Passeios | Stander Turismo" : "Stander Turismo | Experiências inesquecíveis na Serra Gaúcha"} description="Viva o melhor de Gramado, Canela e da Serra Gaúcha. Passeios, ingressos e roteiros personalizados com a Stander Turismo." image="/images/logo_sander_p.jpeg">
+<BaseLayout title={ticketsCatalog ? "Ingressos e Atrações | Stander Turismo" : catalog ? "Passeios | Stander Turismo" : "Stander Turismo | Experiências inesquecíveis na Serra Gaúcha"} description="Viva o melhor de Gramado, Canela e da Serra Gaúcha. Passeios, ingressos e roteiros personalizados com a Stander Turismo." image="/images/logo_sander_p.jpeg">
  <div class="stander-home">
   <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></symbol>
@@ -55,14 +61,14 @@ if (catalog) tours.push(
   <header class="home-header"><div class="home-container header-inner">
    <button class="mobile-menu-toggle icon-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="home-navigation"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
    <a class="home-logo" href="/" aria-label="Stander Turismo — início"><img src="/images/logo_sander_p.jpeg" alt="Stander Turismo" width="110" height="110" fetchpriority="high"/></a>
-   <nav id="home-navigation" aria-label="Navegação principal"><a href={catalog ? "/" : "#inicio"} class:list={{active: !catalog}} aria-current={!catalog ? "page" : undefined}>Início</a><a href="/passeios" class:list={{active: catalog}} aria-current={catalog ? "page" : undefined}>Passeios</a><a href={catalog ? "/#ingressos" : "#ingressos"}>Ingressos</a>{showDestinations && <a href={catalog ? "/#destinos" : "#destinos"}>Destinos</a>}<a href={catalog ? "/#sobre" : "#sobre"}>Sobre</a><a href="#contato">Contato</a></nav>
+   <nav id="home-navigation" aria-label="Navegação principal"><a href={catalog ? "/" : "#inicio"} class:list={{active: !catalog}} aria-current={!catalog ? "page" : undefined}>Início</a><a href="/passeios" class:list={{active: toursCatalog}} aria-current={toursCatalog ? "page" : undefined}>Passeios</a><a href={catalog ? "/ingressos" : "#ingressos"} class:list={{active: ticketsCatalog}} aria-current={ticketsCatalog ? "page" : undefined}>Ingressos</a>{showDestinations && <a href={catalog ? "/#destinos" : "#destinos"}>Destinos</a>}<a href={catalog ? "/#sobre" : "#sobre"}>Sobre</a><a href="#contato">Contato</a></nav>
    <div class="header-actions"><a class="header-search icon-button" href="/passeios" aria-label="Ver passeios"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></a><a class="green-button header-whatsapp" href={wa} target="_blank" rel="noopener noreferrer" aria-label="Fale no WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Fale no WhatsApp</span></a></div>
   </div></header>
   <main>
    <section id="inicio" class="home-hero" aria-labelledby="hero-title"><div class="hero-background" aria-hidden="true">{heroImages.map((src, index) => <img class:list={['hero-landscape', { 'is-active': index === 0 }]} src={src} alt="" fetchpriority={index === 0 ? 'high' : 'low'} decoding="async" />)}</div>{!catalog && <NatalHeroVideo />}
     <button class="hero-carousel-toggle" type="button" aria-label="Pausar carrossel de imagens" aria-pressed="false" hidden={!catalog || heroImages.length < 2}><svg class="icon pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><svg class="icon play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button>
-    <div class="home-container hero-content"><p class="eyebrow">{catalog ? "Explore a Serra Gaúcha" : "Natal Luz em Gramado"}</p><h1 id="hero-title">{catalog ? <>Passeios para<br/>viver e recordar</> : <>Viva a magia<br/>do Natal Luz</>}</h1><p class="hero-description">{catalog ? <>Conheça Gramado, Canela e a Serra Gaúcha<br class="desktop-break"/> com passeios e roteiros da Stander Turismo.</> : <>Luzes, emoção e momentos inesquecíveis em Gramado.<br class="desktop-break"/> Planeje sua viagem com a Stander Turismo.</>}</p>
-    {!catalog && <a class="gold-button hero-natal-cta" href={tourWhatsAppUrl("Natal Luz de Gramado")} target="_blank" rel="noopener noreferrer">Planeje o seu Natal Luz <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>}
+    <div class="home-container hero-content"><p class="eyebrow">{ticketsCatalog ? "Diversão e experiências na Serra Gaúcha" : catalog ? "Explore a Serra Gaúcha" : "Natal Luz em Gramado"}</p><h1 id="hero-title">{ticketsCatalog ? <>Ingressos para<br/>momentos especiais</> : catalog ? <>Passeios para<br/>viver e recordar</> : <>Viva a magia<br/>do Natal Luz</>}</h1><p class="hero-description">{ticketsCatalog ? <>Descubra parques, shows e atrações em Gramado e Canela.<br class="desktop-break"/> Garanta sua experiência com a Stander Turismo.</> : catalog ? <>Conheça Gramado, Canela e a Serra Gaúcha<br class="desktop-break"/> com passeios e roteiros da Stander Turismo.</> : <>Luzes, emoção e momentos inesquecíveis em Gramado.<br class="desktop-break"/> Planeje sua viagem com a Stander Turismo.</>}</p>
+    {!catalog && <a class="gold-button hero-natal-cta" href={tourWhatsAppUrl("Natal Luz de Gramado")} target="_blank" rel="noopener noreferrer">Planeje o seu Natal Luz<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>}
     </div>
    </section>
 
@@ -75,9 +81,9 @@ if (catalog) tours.push(
     <div class="section-heading"><div><h2 id="destinations-title">Os mais procurados pelos nossos clientes.</h2></div><a class="view-all" href="/passeios">Ver todos os destinos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     <div class="destination-grid">{destinations.map(d => <a class="destination-card" href="/passeios"><img src={d.image} alt={d.name === 'Gramado' ? 'Arquitetura e jardins da Serra Gaúcha' : d.name} loading="lazy" width="400" height="440"/><div class="destination-caption"><h3>{d.name}</h3><span>Passeios e ingressos</span></div><span class="destination-arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>)}</div>
    </div></section>}
-   <section id="passeios" class="home-section" aria-labelledby="tours-title"><div class="home-container">
-    <div class="section-heading"><div><h2 id="tours-title">{catalog ? "Todos os passeios" : "Torne sua viagem inesquecível."}</h2></div></div>
-    <div id="home-tour-list" class:list={["product-grid", "tours-preview", {"tours-catalog": catalog}]}>{tours.map((t, index) => <article class:list={['product-card', { 'tour-featured': index === 0 }]} hidden={index >= 4}><a class="product-image" href={tourWhatsAppUrl(t.name)} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img src={t.image} alt="" loading="lazy" width="400" height="300"/><div class="product-tags"><span class="product-tag">{t.tag}</span>{t.detail === 'Translado' && <span class="product-tag product-transfer-tag">Translado</span>}</div></a><div class="product-content"><h3><a href={tourWhatsAppUrl(t.name)} target="_blank" rel="noopener noreferrer">{t.name}</a></h3><p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>{t.location}</p>{t.detail && t.detail !== 'Translado' && <p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>{t.detail}</p>}<p class="tour-summary">{tourSummaries[t.href.split('/').pop()!]}</p><a class="green-button product-button" href={tourWhatsAppUrl(t.name)} target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Fale com a Stander Turismo</span></a></div></article>)}</div>
+   <section id={ticketsCatalog ? "ingressos" : "passeios"} class="home-section" aria-labelledby="tours-title"><div class="home-container">
+    <div class="section-heading"><div><h2 id="tours-title">{ticketsCatalog ? "Todos os ingressos e atrações" : catalog ? "Todos os passeios" : "Torne sua viagem inesquecível."}</h2></div></div>
+    <div id="home-tour-list" class:list={["product-grid", "tours-preview", {"tours-catalog": catalog}]}>{catalogCards.map((t, index) => <article class:list={['product-card', { 'tour-featured': !ticketsCatalog && index === 0 }]} hidden={index >= 4}><a class="product-image" href={tourWhatsAppUrl(t.name)} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img src={t.image} alt="" loading="lazy" width="400" height="300"/><div class="product-tags"><span class="product-tag">{t.tag}</span>{t.detail === 'Translado' && <span class="product-tag product-transfer-tag">Translado</span>}</div></a><div class="product-content"><h3><a href={tourWhatsAppUrl(t.name)} target="_blank" rel="noopener noreferrer">{t.name}</a></h3><p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>{t.location}</p>{t.detail && t.detail !== 'Translado' && <p class="product-meta"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>{t.detail}</p>}<p class="tour-summary">{t.summary}</p><a class="green-button product-button" href={tourWhatsAppUrl(t.name)} target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><span>Fale com a Stander Turismo</span></a></div></article>)}</div>
     <div class:list={["tours-more", {"catalog-controls": catalog}]}>{!catalog && <a class="green-button tours-catalog-link" href="/passeios">Ver mais <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>}<div class="tours-expand-controls" hidden><button class="green-button tours-expand" type="button" aria-expanded="false" aria-controls="home-tour-list">Ver mais <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="green-button tours-collapse" type="button" aria-controls="home-tour-list" hidden>Ver menos <span aria-hidden="true">↑</span></button><span class="sr-only tours-count" role="status" aria-live="polite"></span></div></div>
    </div></section>
    {!catalog && <>
