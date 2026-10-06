@@ -246,3 +246,6 @@ html:has(.stander-home){scroll-behavior:auto}
 .product-tags{position:absolute;top:12px;left:12px;right:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .product-tags .product-tag{position:static}
 .product-tags .product-transfer-tag{background:#123e2a;color:#fff}
+
+.tours-preview .tour-featured{border-color:#d4aa4d;box-shadow:0 8px 24px #b98c2520}
+.tours-preview .tour-featured .product-tag{background:#e4c16c;font-weight:600}
