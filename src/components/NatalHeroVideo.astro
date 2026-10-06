@@ -1,0 +1,60 @@
+﻿---
+const videoId = 'nfR59w-WDK4';
+---
+<div class="hero-video-frame">
+ <iframe id="natal-luz-player" data-video-id={videoId} title="Natal Luz de Gramado" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+</div>
+<button class="hero-audio-toggle" type="button" aria-label="Ativar áudio do vídeo" aria-pressed="false" disabled>
+ <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path class="audio-off" d="m16 9 5 6m0-6-5 6"/><path class="audio-on" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+</button>
+<script>
+ type VideoPlayer = {mute(): void; unMute(): void; isMuted(): boolean; playVideo(): void; destroy(): void; getOptions?(): string[]; unloadModule?(name: string): void; setOption?(module: string, option: string, value: unknown): void};
+ type VideoApi = {Player: new (element: HTMLIFrameElement, options: {events: {onReady(event: {target: VideoPlayer}): void; onApiChange(event: {target: VideoPlayer}): void; onStateChange(event: {target: VideoPlayer}): void; onError(): void; onAutoplayBlocked(): void}}) => VideoPlayer};
+ const videoWindow = window as typeof window & {YT?: VideoApi; onYouTubeIframeAPIReady?: () => void};
+ const frame = document.querySelector<HTMLIFrameElement>('#natal-luz-player');
+ const audio = document.querySelector<HTMLButtonElement>('.hero-audio-toggle');
+ if (frame && audio) {
+  const url = new URL(`https://www.youtube.com/embed/${frame.dataset.videoId}`);
+  url.search = new URLSearchParams({autoplay:'1', mute:'1', controls:'0', cc_load_policy:'0', loop:'1', playlist:frame.dataset.videoId!, playsinline:'1', enablejsapi:'1', origin:window.location.origin, rel:'0', disablekb:'1', fs:'0'}).toString();
+  frame.src = url.toString();
+  let player: VideoPlayer | undefined;
+  const updateAudio = () => {
+   const audible = player ? !player.isMuted() : false;
+   audio.setAttribute('aria-pressed', String(audible));
+   audio.setAttribute('aria-label', audible ? 'Silenciar áudio do vídeo' : 'Ativar áudio do vídeo');
+  };
+  audio.addEventListener('click', () => {
+   if (!player) return;
+   if (player.isMuted()) player.unMute(); else player.mute();
+   player.playVideo();
+   updateAudio();
+  });
+  // Desativa o módulo de legendas mesmo quando a conta do visitante prefere exibi-las.
+  const disableCaptions = (target: VideoPlayer) => {
+   if (!target.getOptions?.().includes('captions')) return;
+   if (target.unloadModule) target.unloadModule('captions');
+   else target.setOption?.('captions', 'track', {});
+  };
+  const initialize = () => {
+   if (!videoWindow.YT?.Player || player) return;
+   player = new videoWindow.YT.Player(frame, {events: {
+    onReady: ({target}) => {player = target; disableCaptions(target); target.mute(); target.playVideo(); audio.disabled = false; updateAudio();},
+    onApiChange: ({target}) => disableCaptions(target),
+    onStateChange: ({target}) => disableCaptions(target),
+    onError: () => {frame.hidden = true; audio.hidden = true;},
+    onAutoplayBlocked: () => {audio.disabled = false;},
+   }});
+  };
+  if (videoWindow.YT?.Player) initialize();
+  else {
+   const previousReady = videoWindow.onYouTubeIframeAPIReady;
+   videoWindow.onYouTubeIframeAPIReady = () => {previousReady?.(); initialize();};
+   if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+    const apiScript = document.createElement('script');
+    apiScript.src = 'https://www.youtube.com/iframe_api';
+    apiScript.onerror = () => {frame.hidden = true; audio.hidden = true;};
+    document.head.append(apiScript);
+   }
+  }
+ }
+</script>

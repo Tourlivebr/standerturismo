@@ -1,11 +1,12 @@
 ---
+import { tourSummaries, tourWhatsAppUrl } from '../data/tour-contact';
 const passeiosReceptivo = [
   {
     id: 1,
     title: "Transfer IDA e VOLTA • Porto Alegre / Gramado ou Canela",
     subtitle: "Translado executivo de ida e volta entre Porto Alegre e Gramado/Canela",
     category: "TRANSFER",
-    image: "/images/Transfer/Transfer.jpg",
+    image: "/images/Transfer/Transfer.jpeg",
     price1: 680,
     label1: "1 a 4 pessoas",
     price2: 850,
@@ -170,8 +171,8 @@ const passeiosReceptivo = [
                     <h3 class="font-bold text-dark-900 dark:text-white text-lg mb-1 group-hover:text-primary-600 transition-colors">
                       {passeio.title}
                     </h3>
-                    <p class="text-dark-600 dark:text-dark-400 text-sm">
-                      {passeio.subtitle}
+                    <p class="text-dark-600 dark:text-dark-400 text-sm line-clamp-3">
+                      {tourSummaries[passeio.slug] || passeio.subtitle}
                     </p>
                   </div>
 
@@ -179,10 +180,10 @@ const passeiosReceptivo = [
 
 
                     <a 
-                      href={`/passeio/${passeio.slug}`}
+                      href={tourWhatsAppUrl(passeio.title)} target="_blank" rel="noopener noreferrer"
                       class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded-xl transition-colors duration-200 block text-center text-base shadow-md flex items-center justify-center"
                     >
-                      RESERVE AGORA
+                      Fale com a Stander Turismo
                     </a>
                   </div>
                 </div>

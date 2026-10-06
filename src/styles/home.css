@@ -249,3 +249,23 @@ html:has(.stander-home){scroll-behavior:auto}
 
 .tours-preview .tour-featured{border-color:#d4aa4d;box-shadow:0 8px 24px #b98c2520}
 .tours-preview .tour-featured .product-tag{background:#e4c16c;font-weight:600}
+
+.tour-summary{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;font-size:13px;line-height:1.5;color:#656963}
+#home-tour-list .product-button{margin-top:auto}
+
+/* O catálogo usa os mesmos cards e mantém as fileiras expansíveis no mobile. */
+@media(min-width:541px){
+ .tours-catalog .product-card:nth-child(n+5),.tours-catalog .product-card[hidden]{display:flex!important}
+ .catalog-controls{display:none}
+}
+
+.hero-video-frame{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none;container-type:size}
+.hero-video-frame iframe{position:absolute;left:50%;top:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%);border:0}
+.hero-audio-toggle{position:absolute;right:20px;bottom:24px;z-index:2;display:grid;place-items:center;width:40px;height:40px;border:1px solid #ffffff66;border-radius:50%;background:#08291c99;color:#fff}
+.hero-audio-toggle[hidden]{display:none}
+.hero-audio-toggle:disabled{opacity:.5;cursor:wait}
+.hero-audio-toggle .audio-on{display:none}
+.hero-audio-toggle[aria-pressed="true"] .audio-off{display:none}
+.hero-audio-toggle[aria-pressed="true"] .audio-on{display:block}
+.hero-natal-cta{margin-top:24px}
+@media(max-width:540px){.hero-audio-toggle{right:16px;bottom:48px}.hero-natal-cta{font-size:13px;margin-top:20px}}

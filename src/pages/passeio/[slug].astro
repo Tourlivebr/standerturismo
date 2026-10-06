@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import StarRating from '../../components/StarRating.astro';
 import FormReserva from '../../components/FormReserva.astro';
+import { tourDetailPagesEnabled, tourWhatsAppUrl } from '../../data/tour-contact';
 
 // Função necessária para modo estático
 export async function getStaticPaths() {
@@ -114,7 +115,7 @@ const passeiosData = {
     galeria: [
       "/images/jolimont/Jolimont1.png",
       "/images/jolimont/chaulet.png",
-      "/images/jolimont/catedral.png",
+      "/images/jolimont/catedral.jpeg",
       "/images/jolimont/gramadense.png",
       "/images/jolimont/nono.png",
       "/images/jolimont/jolimont.jpg"
@@ -405,7 +406,7 @@ const passeiosData = {
     duracao: "Aproximadamente 2 horas cada trecho",
     horarios: ["Conforme horário do voo"],
     galeria: [
-      "/images/Transfer/Transfer.jpg",
+      "/images/Transfer/Transfer.jpeg",
 
     ],
     tags: ["Sem espera no embarque/desembarque", "Embarque imediato", "Privacidade total", "Motorista / Guia experiente"]
@@ -418,6 +419,9 @@ const passeio = passeiosData[slug];
 if (!passeio) {
   return Astro.redirect('/404');
 }
+
+// Conteúdo preservado para reutilização; links antigos seguem para o atendimento.
+if (!tourDetailPagesEnabled) return Astro.redirect(tourWhatsAppUrl(passeio.titulo));
 
 const whatsappMessage = `Olá! Gostaria de mais informações sobre o ${passeio.titulo} - ${passeio.subtitulo}. Gostaria de consultar os valores e a disponibilidade.`;
 const whatsappUrl = `https://wa.me/5547984887630?text=${encodeURIComponent(whatsappMessage)}`;
