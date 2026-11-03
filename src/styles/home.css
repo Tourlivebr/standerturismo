@@ -292,3 +292,6 @@ html:has(.stander-home){scroll-behavior:auto}
 .footer-navigation h2{margin-bottom:16px}
 @media(max-width:800px){.footer-main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.footer-navigation{grid-column:1/-1}.footer-navigation .footer-links{flex-wrap:wrap}}
 @media(max-width:540px){.home-footer{padding-top:30px}.footer-main{grid-template-columns:minmax(0,1fr);gap:30px}.footer-brand-with-logo>img{width:64px;height:64px}.footer-navigation{grid-column:auto}.footer-navigation .footer-links{gap:14px 22px}}
+
+/* Transfers de Natal. */
+.transfer-ticket-note{font-size:11px;line-height:1.4;color:var(--deep);background:#f3f0e5;border-radius:999px;padding:4px 9px;align-self:flex-start}

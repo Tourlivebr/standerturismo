@@ -5,6 +5,8 @@ export function tourWhatsAppUrl(name: string) {
   return `https://wa.me/5547984887630?text=${encodeURIComponent(message)}`;
 }
 export const tourSummaries: Record<string, string> = {
+  'transfer-grande-desfile-natal': 'Translado para o espetáculo do Natal Luz no Expogramado.',
+  'transfer-nativitaten': 'Translado para o espetáculo do Natal Luz no Serra Park.',
   'transfer-ida-volta-porto-alegre': 'Transfer privativo de ida e volta entre Porto Alegre e Gramado ou Canela, com conforto e motorista/guia.',
   'city-tour-privativo': 'Conheça Gramado e Canela com motorista/guia e um roteiro privativo personalizado ao seu tempo e preferências.',
   'transporte-sky-glass': 'Admire o Vale da Ferradura na plataforma de vidro do Skyglass, com transporte executivo de ida e volta.',
